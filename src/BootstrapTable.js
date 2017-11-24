@@ -278,7 +278,16 @@ class BootstrapTable extends Component {
           if (this.store.filterObj) this.handleFilterData(this.store.filterObj);
           newState.currPage = Util.getFirstPage(nextProps.options.pageStartIndex);
         } else {
-          data = this.store.sort().get();
+          if (!this.allowRemote(Const.REMOTE_SORT)) {
+            data = this.store.sort().get();
+          } else {
+            const { options: currentOptions } = this.props;
+            const sortName = options.sortName;
+            const sortOrder = options.sortOrder;
+            if (currentOptions.sortName !== sortName || currentOptions.sortOrder !== sortOrder) {
+              this.store.setSortInfo(sortOrder, options.sortName);
+            }
+          }
           newState.data = data;
         }
         this.setState(() => newState);
@@ -878,7 +887,8 @@ class BootstrapTable extends Component {
           invalid();
         }
       };
-      const isValid = beforeSaveCell(this.state.data[rowIndex], fieldName, newVal, beforeSaveCellCB);
+      const props = { rowIndex, colIndex };
+      const isValid = beforeSaveCell(this.state.data[rowIndex], fieldName, newVal, beforeSaveCellCB, props);
       if (isValid === false && typeof isValid !== 'undefined') {
         return invalid();
       } else if (isValid === Const.AWAIT_BEFORE_CELL_EDIT) {
@@ -894,13 +904,14 @@ class BootstrapTable extends Component {
     const { afterSaveCell } = this.props.cellEdit;
     const columns = this.getColumnsDescription(this.props);
     const fieldName = columns[colIndex].name;
+    const props = { rowIndex, colIndex };
     if (onCellEdit) {
       newVal = onCellEdit(this.state.data[rowIndex], fieldName, newVal);
     }
 
     if (this.allowRemote(Const.REMOTE_CELL_EDIT)) {
       if (afterSaveCell) {
-        afterSaveCell(this.state.data[rowIndex], fieldName, newVal);
+        afterSaveCell(this.state.data[rowIndex], fieldName, newVal, props);
       }
       return;
     }
@@ -914,7 +925,7 @@ class BootstrapTable extends Component {
     });
 
     if (afterSaveCell) {
-      afterSaveCell(this.state.data[rowIndex], fieldName, newVal);
+      afterSaveCell(this.state.data[rowIndex], fieldName, newVal, props);
     }
   }
 

@@ -1,3 +1,29 @@
+<a name="v4.1.5"></a>
+# [v4.1.5](https://github.com/AllenFang/react-bootstrap-table/compare/v4.1.3...v4.1.5) (2017-11-20)
+## Bug fixes
+* Fixed the sort status doesn't updated internally when remote sort enable([06b3560](https://github.com/AllenFang/react-bootstrap-table/commit/06b356021e3364d0048f8aba8e934e07bb7a02fc))
+
+## Enhancements
+* `beforeSaveCell` and `afterSaveCell` will pass additional information on last one argument([db634db](https://github.com/AllenFang/react-bootstrap-table/commit/db634db0573995427b743cf3919b7b2f5824b1de))
+
+## Features
+* Support press ENTER to select row when enable keyboard navigation([b52e065](https://github.com/AllenFang/react-bootstrap-table/commit/b52e065397221d50a5a824ea6def990bb49e352c))
+	* Check [this](https://github.com/AllenFang/react-bootstrap-table/blob/master/examples/js/keyboard-nav/enter-to-select-row-with-nav-table.js) example
+
+<a name="v4.1.2"></a>
+<a name="v4.1.3"></a>
+<a name="v4.1.4"></a>
+# [v4.1.1](https://github.com/AllenFang/react-bootstrap-table/compare/v4.1.1...v4.1.3) (2017-11-11)
+## Bug fixes
+* Fixed data get sorted locally even with remote sorting([509e31a](https://github.com/AllenFang/react-bootstrap-table/commit/509e31ae3dee1c3cfc5024dcec15f0e14001f7e0),[0d57d95](https://github.com/AllenFang/react-bootstrap-table/commit/0d57d957f35d65b80dbace55036c0d4d61064f9f))
+
+<a name="v4.1.1"></a>
+# [v4.1.1](https://github.com/AllenFang/react-bootstrap-table/compare/v4.1.0...v4.1.1) (2017-10-25)
+## Bug fixes
+* Fixed edit cell that has no data IE 11 fails with error code 800a025e([17be157](https://github.com/AllenFang/react-bootstrap-table/commit/17be157f45cf17244cd5bc5ed37be1e1372a2b3d))
+* Fixed sizePerPage drop down requires double click([9c0332a](https://github.com/AllenFang/react-bootstrap-table/commit/9c0332a8611671ce534467edaad0d76b575e8716))
+* Fixed `remote` is enable and a sorted table is reset when state update([5a70141](https://github.com/AllenFang/react-bootstrap-table/commit/5a70141e01f739cacdf89efd2ac6812f8aafdfd0))
+
 <a name="v4.1.0"></a>
 # [v4.1.0](https://github.com/AllenFang/react-bootstrap-table/compare/v4.0.6...v4.1.0) (2017-10-16)
 ## Bug fixes
